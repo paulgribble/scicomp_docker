@@ -1,13 +1,6 @@
 {
   "name": "Scientific Computing 2025",
-  "build": {
-    "dockerfile": "../Dockerfile",
-    "context": "..",
-    "args": {
-      "USERNAME": "student",
-      "UID": "1000"
-    }
-  },
+  "image": "ghcr.io/paulgribble/scicomp:2025",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -34,8 +27,5 @@
   "postCreateCommand": "python --version && pip list",
   "remoteUser": "student",
   "workspaceFolder": "/home/student/work",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/student/work,type=bind",
-  "mounts": [
-    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/student/.gitconfig,type=bind,consistency=cached"
-  ]
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/student/work,type=bind"
 }
