@@ -91,7 +91,7 @@ From any working directory you want to use for notebooks:
 docker run --rm -it -p 8888:8888 \
   -v "$PWD:/home/student/work" \
   ghcr.io/paulgribble/scicomp:2025 \
-  jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
+  python -m jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
 ```
 
 Then open the printed URL in your browser (usually http://localhost:8888).
