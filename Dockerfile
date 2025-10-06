@@ -16,7 +16,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 ARG USERNAME=student
 ARG UID=1000
 RUN useradd -m -u ${UID} ${USERNAME}
-RUN mkdir work app
+RUN mkdir work
 
 # Ensure user-level pip scripts are on PATH
 ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
@@ -26,9 +26,9 @@ ENV IPY_SIMPLE_PROMPT=1
 
 # Install Python deps as the non-root user
 USER ${USERNAME}
-WORKDIR /home/${USERNAME}/app
+WORKDIR /home/${USERNAME}
 
-COPY --chown=${USERNAME}:${USERNAME} requirements.txt /home/${USERNAME}/app/requirements.txt
+COPY --chown=${USERNAME}:${USERNAME} requirements.txt /home/${USERNAME}/requirements.txt
 RUN python -m pip install --upgrade pip && \
     pip install -r requirements.txt
 
