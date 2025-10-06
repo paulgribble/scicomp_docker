@@ -1,24 +1,38 @@
-# Good, small, multi-arch base
+# Small, multi-arch Python base
 FROM python:3.12-slim
 
-# System deps commonly needed for scientific Python wheels
+# System packages commonly needed to build scientific wheels
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential git curl ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    build-essential git curl ca-certificates tini \
+ && rm -rf /var/lib/apt/lists/*
 
-# Avoid __pycache__, and get unbuffered logs
+# Safer defaults
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1
 
-# Create a non-root user (better practice)
-RUN useradd -m -u 1000 student
-USER student
-WORKDIR /home/student
+# Create non-root user
+ARG USERNAME=student
+ARG UID=1000
+RUN useradd -m -u ${UID} ${USERNAME}
+RUN mkdir work app
 
-# Copy and install deps (pin versions!)
-COPY requirements.txt .
-RUN python -m pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+# Ensure user-level pip scripts are on PATH
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
 
-CMD ["python", "-m", "ipykernel"]
+# Silence IPython's CPR warning globally (simple prompt)
+ENV IPY_SIMPLE_PROMPT=1
+
+# Install Python deps as the non-root user
+USER ${USERNAME}
+WORKDIR /home/${USERNAME}/app
+
+COPY --chown=${USERNAME}:${USERNAME} requirements.txt /home/${USERNAME}/app/requirements.txt
+RUN python -m pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+# Default working area for students
+WORKDIR /home/${USERNAME}/work
+EXPOSE 8888
 

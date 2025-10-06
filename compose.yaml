@@ -1,0 +1,6 @@
+services:
+  lab:
+    image: ghcr.io/paulgribble/scicomp:2025
+    ports: ["8888:8888"]
+    volumes:
+      - ./:/home/student/work

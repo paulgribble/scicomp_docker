@@ -2,28 +2,6 @@
 
 Make a docker image for scientific computing course (Psychology 9040) and publish it as a github package.
 
-## Instructor Build
-
-Build the thing.
-
-```{bash}
-make publish
-```
-
-Test the thing.
-
-```{bash}
-make run
-```
-
-Expected: a bash shell
-
-```{bash}
-make lab
-```
-
-Expected: open your browser to localhost:8888 and there should be jupyter lab
-
 ## Student Install and First Run
 
 ### Install Docker Desktop
@@ -90,10 +68,31 @@ From any working directory you want to use for notebooks:
 ```{bash}
 docker run --rm -it -p 8888:8888 \
   -v "$PWD:/home/student/work" \
-  ghcr.io/paulgribble/scicomp:2025 \
-  python -m jupyterlab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
+  ghcr.io/paulgribble/scicomp:2025
 ```
 
 Then open the printed URL in your browser (usually http://localhost:8888).
 
+
+## Instructor Build
+
+Build the thing.
+
+```{bash}
+make publish
+```
+
+Test the thing.
+
+```{bash}
+make run
+```
+
+Expected: a bash shell
+
+```{bash}
+make lab
+```
+
+Expected: open your browser to [http://localhost:8888](http://localhost:8888) and there should be jupyter lab
 

@@ -1,8 +1,8 @@
-numpy
-pandas
-matplotlib
-scipy
-scikit-learn
-ipython
-jupyterlab
-ipykernel
+numpy==2.3.3
+pandas==2.3.3
+matplotlib==3.10.6
+scipy==1.16.2
+scikit-learn==1.7.2
+ipython==9.6.0
+jupyterlab==4.4.9
+ipykernel==6.30.1
