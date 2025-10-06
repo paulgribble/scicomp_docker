@@ -36,6 +36,13 @@ In a terminal (macOS Terminal, Windows PowerShell, or Linux shell):
 docker run hello-world
 ```
 
+Expected:
+
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
+
 Then check versions/architecture:
 
 ```{bash}
