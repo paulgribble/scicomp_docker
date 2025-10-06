@@ -80,7 +80,7 @@ Expected:
 ### Pull the course image
 
 ```{bash}
-docker pull ghcr.io/paulgribble/sci-comp:2025
+docker pull ghcr.io/paulgribble/scicomp:2025
 ```
 
 ### Start Jupyter Lab
@@ -90,7 +90,7 @@ From any working directory you want to use for notebooks:
 ```{bash}
 docker run --rm -it -p 8888:8888 \
   -v "$PWD:/home/student/work" \
-  ghcr.io/paulgribble/sci-comp:2025S \
+  ghcr.io/paulgribble/scicomp:2025 \
   jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
 ```
 
