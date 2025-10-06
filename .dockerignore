@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+
+# Jupyter
+.ipynb_checkpoints/
+
+
+# VCS and OS
+.git/
+.gitignore
+.DS_Store
+
+
+# Data & outputs (adjust as needed)
+/data/
+outputs/
