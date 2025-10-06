@@ -3,4 +3,5 @@ pandas
 matplotlib
 scipy
 scikit-learn
+ipython
 jupyterlab

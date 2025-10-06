@@ -47,10 +47,10 @@ publish: create-builder
 
 # ---- Run helpers ----
 run:
-	docker run --rm -it $(TAG) /bin/bash
+	docker run --rm -it --name scicomp $(TAG) /bin/bash
 
 lab:
-	docker run --rm -it -p 8888:8888 \
+	docker run --rm -it --name scicomp -p 8888:8888 \
 	  -v "$$PWD:/home/student/work" \
 	  $(TAG) \
 	  python -m jupyterlab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
