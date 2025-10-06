@@ -1,0 +1,41 @@
+{
+  "name": "Scientific Computing 2025",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "args": {
+      "USERNAME": "student",
+      "UID": "1000"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.formatting.provider": "none",
+        "jupyter.askForKernelRestart": false,
+        "files.watcherExclude": {
+          "**/.git/objects/**": true,
+          "**/.git/subtree-cache/**": true,
+          "**/node_modules/**": true,
+          "**/.ipynb_checkpoints/**": true
+        }
+      }
+    }
+  },
+  "forwardPorts": [8888],
+  "postCreateCommand": "python --version && pip list",
+  "remoteUser": "student",
+  "workspaceFolder": "/home/student/work",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/student/work,type=bind",
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/student/.gitconfig,type=bind,consistency=cached"
+  ]
+}

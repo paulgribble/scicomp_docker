@@ -55,6 +55,15 @@ lab:
 	  $(TAG) \
 	  python -m jupyterlab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
 
+# Run Jupyter for VS Code kernel connection (shows connection URL)
+lab-vscode:
+	@echo "Starting Jupyter server for VS Code connection..."
+	@echo "Copy the URL with token from the output below and paste it into VS Code"
+	docker run --rm -it --name scicomp -p 8888:8888 \
+	  -v "$$PWD:/home/student/work" \
+	  $(TAG) \
+	  jupyter lab --ip=0.0.0.0 --no-browser
+
 # ---- Clean local artifacts ----
 clean:
 	- docker rmi $(TAG) || true
