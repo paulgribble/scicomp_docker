@@ -18,7 +18,7 @@ WORKDIR /home/student
 # Copy and install deps (pin versions!)
 COPY requirements.txt .
 RUN python -m pip install --upgrade pip \
-    && pip install -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 CMD ["python", "-m", "ipykernel"]
 
