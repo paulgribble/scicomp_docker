@@ -53,7 +53,7 @@ lab:
 	docker run --rm -it -p 8888:8888 \
 	  -v "$$PWD:/home/student/work" \
 	  $(TAG) \
-	  jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
+	  python -m jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token=''
 
 # ---- Clean local artifacts ----
 clean:
